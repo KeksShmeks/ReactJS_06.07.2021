@@ -1,7 +1,6 @@
 
-
 function Messege(props) {
-    return <p>Мария, {props.text}</p>
+    return <p>{props.author}: {props.text}</p>
 }
 
 export default Messege;
