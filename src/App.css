@@ -16,6 +16,7 @@
 }
 
 .App-header__form {
+  display: flex;
   border: 2px solid #000;
   border-radius: 10px;
   box-sizing: border-box;
