@@ -3,6 +3,7 @@ import './App.css';
 import React from 'react';
 import Chat from './ChatItem'; 
 import ListChats from './ListChats';
+import Routes from './Routes';
 
 import {
   ThemeProvider, createTheme
@@ -27,13 +28,13 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
     <div className="App">
-      <header className="App-header">
-        
-        <ListChats />
+      {/* <header className="App-header"> */}
+        <Routes />
+        {/* <ListChats />
         <div className="app_contain">
           <Chat />
-        </div>
-    </header>
+        </div> */}
+    {/* </header> */}
   </div>
   </ThemeProvider >
   );
