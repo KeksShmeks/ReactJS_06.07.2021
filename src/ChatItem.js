@@ -29,9 +29,6 @@ const Chat = (props) => {
         messageList[messageList.length - 1].author !== AUTHOR.BOT){
             timer.current = setTimeout((  
             ) => {
-            // setTimeout(() => {
-            //     setMessagelist(contentMassageList => ([...contentMassageList, {author: AUTHOR.BOT, text: "Как дела?"}])
-            // )}, 1000)
             setMessagelist(contentMassageList => ([...contentMassageList, {author: AUTHOR.BOT, text: "Привет"}])
             )}, 1500)
             }
@@ -51,7 +48,7 @@ const Chat = (props) => {
         }
 
         if (!isChatExist){
-            return <Redirect to="/profile" />
+            return <Redirect to="/chats" />
         };
 
     return (

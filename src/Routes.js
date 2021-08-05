@@ -17,7 +17,7 @@ export default function Routes(props) {
         </li>
 
         <li>
-            <Link to="/chats/:chatId">chats</Link>
+            <Link to="/chats">chats</Link>
         </li>
 
         <li>
@@ -27,31 +27,40 @@ export default function Routes(props) {
     </header>
     
         <Switch>
-   
         <Route exact path="/">
             <Home />
         </Route>
-   
+
         <Route path="/profile">
+        
             <Profile />
         </Route>
-   
+
         <Route
             path="/chats/:chatId"
-         render={() => {
-            console.log({props})
-             return <ListChats chats={props.chats} currentChat={props.currentChat} onCurrenChatChange={props.onCurrenChatChange} getIsChatExists={props.getIsChatExists} />
-         }
+            render={() => {
+            return (
+                <div>
+            {/* <ListChats chats={props.chats} currentChat={props.currentChat} onCurrenChatChange={props.onCurrenChatChange} /> */}
+            <Chat getIsChatExists={props.getIsChatExists}/>
+            </div>
+            )
+        }
         }
         >
-            {/* <ListChats chats={props.chats} currentChat={props.currentChat} onCurrenChatChange={props.onCurrenChatChange} getIsChatExists={props.getIsChatExists} /> */}
-            {/* <Chat getIsChatExists={props.getIsChatExists}/> */}
+        
         </Route>
+
+        <Route exact path="/chats" render={() => { 
+            console.log(props.getIsChatExists)
+            return (<ListChats chats={props.chats} currentChat={props.currentChat} onCurrenChatChange={props.onCurrenChatChange} />)
+            }
+            } />
 
         <Route>
             <h3>Page not found</h3>
         </Route>
-   
+
         </Switch>
         </>
 
