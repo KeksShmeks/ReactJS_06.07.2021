@@ -1,20 +1,36 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
-function ListChats() {
-    const { chatId } = useParams();
+function ListChats(props) {
+    
+const { currentChat, onCurrenChatChange, chats, getIsChatExists} = props;
 
-    const [ chats, setChats] = React.useState({
-        id1: {
-            name: "Chat1",
-        },
-        id2: {
-            name: "Chat2",
-        }
+const { chatId } = useParams();
 
-    });
+const isChatExist = React.useMemo(() => getIsChatExists(chatId), [ getIsChatExists , chatId])
+console.log(chatId)
+
+
+const [messageList, setMessagelist] = React.useState([]);
+
+if (!isChatExist){
+ 
+    return <Redirect to="/profile" />
+};
+
+
+
+    // const [ chats, setChats] = React.useState({
+    //     id1: {
+    //         name: "Chat1",
+    //     },
+    //     id2: {
+    //         name: "Chat2",
+    //     }
+
+    // });
 
 
     //     { id: 'Chat1', name: "Чат 1" },
@@ -22,14 +38,14 @@ function ListChats() {
     //     { id: "Chat3", name: "Чат 3" },
     // ]);
     
-    const [ currentChat, setCurrentChat ] = React.useState(chats)
+    // const [ currentChat, setCurrentChat ] = React.useState(chats)
     
-    const handeleChangeChat = (chat) => setCurrentChat(chat)
+    // const handeleChangeChat = (chat) => setCurrentChat(chat)
 
     return (
         <List className="app__sidebar" subheader="Список чатов">
         {chats.map((chat) => (
-            <ListItem button selected={chat.id === currentChat.id} onClick={() => handeleChangeChat(chat)}>{chat.name}</ListItem>
+            <ListItem key={chat.id} button selected={chat.id === currentChat.id} onClick={() => onCurrenChatChange(chat)}>{chat.name}</ListItem>
         )
         )}
         

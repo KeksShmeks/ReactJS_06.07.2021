@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import {  Link } from "react-router-dom";
 import { Route, Switch } from "react-router";
 import Chat from './ChatItem'; 
 import ListChats from './ListChats';
@@ -7,7 +7,7 @@ import Home from "./Home";
 import Profile from "./Profile";
 
 
-export default function Routes() {
+export default function Routes(props) {
     return (
         <>
     <header>
@@ -37,11 +37,19 @@ export default function Routes() {
         </Route>
    
         <Route
-            exact
-            path="/chats"
+            path="/chats/:chatId"
+         render={() => {
+            console.log({props})
+             return <ListChats chats={props.chats} currentChat={props.currentChat} onCurrenChatChange={props.onCurrenChatChange} getIsChatExists={props.getIsChatExists} />
+         }
+        }
         >
-            <ListChats />
-            <Chat />
+            {/* <ListChats chats={props.chats} currentChat={props.currentChat} onCurrenChatChange={props.onCurrenChatChange} getIsChatExists={props.getIsChatExists} /> */}
+            {/* <Chat getIsChatExists={props.getIsChatExists}/> */}
+        </Route>
+
+        <Route>
+            <h3>Page not found</h3>
         </Route>
    
         </Switch>

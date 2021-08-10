@@ -2,13 +2,23 @@
 import React from 'react';
 import Message from './Message';
 import InputForm from './InputForm';
+import { Redirect, useParams } from 'react-router';
 
 const AUTHOR = {
     ME: 'Me',
     BOT: 'Bot'
 }
 
-const Chat = () => {
+const Chat = (props) => {
+    const { getIsChatExists } = props;
+
+    // eslint-disable-next-line no-undef
+    const { chatId } = useParams();
+
+    const isChatExist = React.useMemo(() => getIsChatExists(chatId), [ getIsChatExists , chatId])
+
+    
+
     const [messageList, setMessagelist] = React.useState([]);
 
     const timer = React.useRef(null);
@@ -39,6 +49,10 @@ const Chat = () => {
             [...contentMassageList, {author: AUTHOR.ME, text: newMessagetext},
             ])
         }
+
+        if (!isChatExist){
+            return <Redirect to="/profile" />
+        };
 
     return (
         <div className="chat">

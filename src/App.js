@@ -20,16 +20,41 @@ const theme = createTheme({
     },
   },
 });
+ //     id1: {
+    //         name: "Chat1",
+    //     },
+    //     id2: {
+    //         name: "Chat2",
+    //     }
+
+    // });
+
+
+ 
 
 
 
 function App() {
+  const [ chats, setChats] = React.useState([
+    { id: 'Chat1', name: "Чат 1" },
+    { id: "Chat2", name: "Чат 2" },
+    { id: "Chat3", name: "Чат 3" },
+]);
+
+ const [ currentChat, setCurrentChat ] = React.useState(chats)
+
+const handeleChangeChat = (chat) => setCurrentChat(chat)
+
+const handleIsChatExists = React.useCallback(
+(chatId) => {
+  return Boolean(chats.find((chat) => chat.id === chatId))
+}, [chats])
   
   return (
     <ThemeProvider theme={theme}>
     <div className="App">
       {/* <header className="App-header"> */}
-        <Routes />
+        <Routes getIsChatExists={handleIsChatExists} currentChat={currentChat} onCurrenChatChange={handeleChangeChat} chats={chats} />
         {/* <ListChats />
         <div className="app_contain">
           <Chat />
