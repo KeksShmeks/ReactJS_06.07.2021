@@ -22,7 +22,7 @@ const InputForm = (props) => {
 
     return (
         <form className="App-header__form" onSubmit={handleSubmit}>
-            <TextField fullWidth required={true} id="outlined-required" value={inputValue} onChange={handelChange} label="Сообщение" variant="outlined" />
+            <TextField fullWidth required id="outlined-required" value={inputValue} onChange={handelChange} label="Сообщение" variant="outlined" />
             <Button type="submit" variant="contained" color="primary">Отправить</Button>
         </form>
     )
