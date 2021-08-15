@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useCallback } from 'react';
 import Message from './Message';
 import InputForm from './InputForm';
 import { Redirect, useParams } from 'react-router';
+import { useDispatch, useSelector} from "react-redux";
 
 const AUTHOR = {
     ME: 'Me',
@@ -51,11 +53,28 @@ const Chat = (props) => {
             return <Redirect to="/chats" />
         };
 
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        const profileName = useSelector(state => state.profile.name);
+
+  // eslint-disable-next-line no-undef
+const renderMessage = useCallback((message, i) => (
+    <div key={i}>
+    <span>
+        {message.author === AUTHOR.ME ? profileName : message.author}:
+    </span>
+      <span>{message.text}</span>
+    </div>
+  ), [profileName]);
+
     return (
         <div className="chat">
             <div className="App-header__messageList">
             {messageList.map((message, index) => (
-            <Message key={index} text={message.text} author={message.author}/>
+            <Message key={index} 
+            text={message.text} 
+            author={message.author}
+            
+            />
             ))} 
             </div>
             <InputForm onSubmit={handleMessegeSubmit} />
