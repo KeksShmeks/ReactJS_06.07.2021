@@ -4,6 +4,8 @@ import {
 
 const initialState = {
     // to be stored like this {[chatId]: [{id, text, author}]}
+
+    
     messageList: {},
 };
 
