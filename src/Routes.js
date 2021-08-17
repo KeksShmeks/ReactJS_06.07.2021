@@ -9,61 +9,49 @@ import Profile from "./Profile";
 
 export default function Routes(props) {
     return (
-        <>
-    <header>
-    <ul>
-        <li>
-            <Link to="/profile">profile</Link>
-        </li>
+        <React.Fragment>
+            <header>
+                <ul>
+                    <li>
+                        <Link to="/profile">profile</Link>
+                    </li>
 
-        <li>
-            <Link to="/chats">chats</Link>
-        </li>
+                    <li>
+                        <Link to="/chats">chats</Link>
+                    </li>
 
-        <li>
-            <Link to="/">Home</Link>
-        </li>
-    </ul>
-    </header>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                </ul>
+            </header>
     
-        <Switch>
-        <Route exact path="/">
-            <Home />
-        </Route>
+            <Switch>
+                <Route exact path="/">
+                    <Home />
+                </Route>
 
-        <Route path="/profile">
-        
-            <Profile />
-        </Route>
+                <Route path="/profile" component={Profile}>
+                    {/* <Profile /> */}
+                </Route>
 
-        <Route
-            path="/chats/:chatId"
-            render={() => {
-            return (
-                <div>
-            {/* <ListChats chats={props.chats} currentChat={props.currentChat} onCurrenChatChange={props.onCurrenChatChange} /> */}
-            <Chat getIsChatExists={props.getIsChatExists}/>
-            </div>
-            )
-        }
-        }
-        >
-        
-        </Route>
+                <Route
+                    path="/chats/:chatId"
+                    render={() => {
+                    return (
+                    <div>
+                        <Chat />
+                    </div>
+                    )
+                }}/>
 
-        <Route exact path="/chats" render={() => { 
-            console.log(props.getIsChatExists)
-            return (<ListChats chats={props.chats} currentChat={props.currentChat} onCurrenChatChange={props.onCurrenChatChange} />)
-            }
-            } />
+                <Route exact path="/chats" component={ListChats} />
 
-        <Route>
-            <h3>Page not found</h3>
-        </Route>
-
-        </Switch>
-        </>
-
+                <Route>
+                    <h3>Page not found</h3>
+                </Route>
+            </Switch>
+        </React.Fragment>
     );
 }
 

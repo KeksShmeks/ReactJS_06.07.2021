@@ -2,25 +2,47 @@ import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector} from "react-redux";
+import InputForm from './InputForm';
+import { Button } from '@material-ui/core';
+import { addChat, deleteChat } from './actions/chats';
 
-function ListChats(props) {
-    
-const { currentChat, onCurrenChatChange, chats} = props;
+function ListChats() {
 
 const history = useHistory()
 
+const chats = useSelector(state => state.chats);
+
 const handlerChatLinkCklick = chat => {
-    onCurrenChatChange(chat)
     history.push(`/chats/${chat.id}`) 
 }
 
+const dispatch = useDispatch()
+
+const handelAddChat = (nameChat) => {
+    dispatch(addChat(`chat${Date.now()}`, nameChat))
+}
+
+const handelRemoveChat = (chatId) => {
+    dispatch(deleteChat(chatId))
+    console.log('handelRemoveChat', chatId)
+}
+
     return (
-        <List className="app__sidebar" subheader="Список чатов">
-        {chats.map((chat) => (
-            <ListItem key={chat.id} button selected={chat.id === currentChat.id} onClick={() => handlerChatLinkCklick (chat)}>{chat.name}</ListItem>
-        )
-        )}
-    </List>
+        <React.Fragment>
+            <div>
+                <List className="app__sidebar" subheader="Список чатов">
+                {Object.values(chats).map((chat) => (
+                    <div key={chat.id}>
+                        <ListItem button onClick={() => handlerChatLinkCklick (chat)}>{chat.name}</ListItem>
+                        <Button onClick={() => handelRemoveChat(chat.id)}>УДАЛИТЬ</Button>
+                    </div>
+                ))}
+                </List>
+            </div>
+            <InputForm lable="Имя чата" placeholder="Введите имя чата" onSubmit={handelAddChat} />
+        </React.Fragment>
+
     )
 }
 

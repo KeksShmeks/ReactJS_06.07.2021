@@ -1,4 +1,7 @@
-import { CHANGE_IS_ONLINE, CHANGE_NAME } from "../actions/profile"
+import {
+    CHANGE_IS_ONLINE,
+    CHANGE_NAME
+} from "../actions/profile"
 
 const initialState = {
     name: 'Andrey',
@@ -6,7 +9,7 @@ const initialState = {
     isOnline: true
 }
 
-export default function reducer(state = initialState, action){
+export default function reducer(state = initialState, action) {
     switch (action.type) {
         case CHANGE_NAME: {
             return {

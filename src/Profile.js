@@ -4,7 +4,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { changeIsOnline } from "./actions/profile";
 
-function Profile(props) {
+function Profile() {
     const dispatch = useDispatch()
     const { name, age, isOnline } = useSelector((state) => state.profile)
 
