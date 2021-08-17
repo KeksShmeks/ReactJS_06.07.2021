@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 const InputForm = (props) => {
     const { onSubmit } = props;
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    
     const [inputValue, setInputValue] = React.useState(''); 
 
     const handelChange = (event) => {

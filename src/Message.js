@@ -1,10 +1,10 @@
+import React from "react";
 
-
-function Messege(props) {
+function Message(props) {
 
     
-    return <p>{props.author}: {props.text}</p>
+    return (<p>{props.author}: {props.text}</p>)
 }
 
-export default Messege;
+export default Message;
 
