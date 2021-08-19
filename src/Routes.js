@@ -4,14 +4,14 @@ import { Route, Switch } from "react-router";
 import Chat from './ChatItem'; 
 import ListChats from './ListChats';
 import Home from "./Home";
-import Profile from "./Profile";
+import Profile from "./profile/Profile";
 
 
 export default function Routes(props) {
     return (
         <React.Fragment>
             <header>
-                <ul>
+                <ul class="side_bar">
                     <li>
                         <Link to="/profile">profile</Link>
                     </li>
@@ -32,18 +32,12 @@ export default function Routes(props) {
                 </Route>
 
                 <Route path="/profile" component={Profile}>
-                    {/* <Profile /> */}
                 </Route>
 
                 <Route
                     path="/chats/:chatId"
-                    render={() => {
-                    return (
-                    <div>
-                        <Chat />
-                    </div>
-                    )
-                }}/>
+                    component={Chat}
+                />
 
                 <Route exact path="/chats" component={ListChats} />
 

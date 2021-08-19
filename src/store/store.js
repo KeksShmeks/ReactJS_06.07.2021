@@ -1,10 +1,21 @@
 import {
     combineReducers,
-    createStore
+    createStore,
+    compose,
+    applyMiddleware
 } from "redux";
 import profileReducer from '../reducers/profile';
 import chatsReducer from '../reducers/chats';
 import messagesReducer from '../reducers/messages';
+import thunk from "redux-thunk";
+import persistReducer from "redux-persist/es/persistReducer";
+import persistStore from "redux-persist/es/persistStore";
+import storage from "redux-persist/lib/storage";
+
+const persistConfig = {
+    key: 'root',
+    storage,
+}
 
 const rootReducer = combineReducers({
     profile: profileReducer,
@@ -12,7 +23,13 @@ const rootReducer = combineReducers({
     messages: messagesReducer
 })
 
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE || compose
+
 export const store = createStore(
-    rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    persistedReducer,
+    composeEnhancers(applyMiddleware(thunk))
 )
+
+export const persistor = persistStore(store)

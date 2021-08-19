@@ -3,10 +3,7 @@ import {
 } from "../actions/chats";
 
 const initialState = {
-    chat1: {
-        id: 'chat1',
-        name: 'Чат 1',
-    },
+
 };
 
 const chatsReducer = (state = initialState, action) => {
@@ -22,7 +19,6 @@ const chatsReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                // currentChat => currentChat.filter((chat) => chat.id !== chatId)
             }
         }
         default:

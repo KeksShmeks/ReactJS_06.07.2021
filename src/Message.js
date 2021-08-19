@@ -1,8 +1,6 @@
 import React from "react";
 
 function Message(props) {
-
-    
     return (<p>{props.author}: {props.text}</p>)
 }
 

@@ -40,7 +40,7 @@ const handelRemoveChat = (chatId) => {
                 ))}
                 </List>
             </div>
-            <InputForm lable="Имя чата" placeholder="Введите имя чата" onSubmit={handelAddChat} />
+            <InputForm lable='Имя чата' placeholder='Введите название' onSubmit={handelAddChat} />
         </React.Fragment>
 
     )
