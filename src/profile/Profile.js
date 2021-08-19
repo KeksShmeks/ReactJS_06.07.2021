@@ -2,9 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { changeIsOnline } from "./actions/profile";
+import { changeIsOnline } from "../actions/profile";
+import ProfileInfo from "./profileInfo";
 
-function Profile(props) {
+function Profile() {
     const dispatch = useDispatch()
     const { name, age, isOnline } = useSelector((state) => state.profile)
 
@@ -15,13 +16,7 @@ function Profile(props) {
     return (
         <div>
             <p>Profile</p>
-            <p> Name: 
-                {name}
-            </p>
-            <p>
-                Age: 
-                {age}
-            </p>
+            <ProfileInfo name={name} age={age}></ProfileInfo>
 
             <FormControlLabel
         control={
