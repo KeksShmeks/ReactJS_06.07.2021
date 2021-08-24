@@ -3,8 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 const InputForm = (props) => {
-    const { onSubmit } = props;
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { onSubmit, label = 'Сообщение', placeholder = 'Введите сообщение'  } = props;
+
     const [inputValue, setInputValue] = React.useState(''); 
 
     const handelChange = (event) => {
@@ -22,7 +22,7 @@ const InputForm = (props) => {
 
     return (
         <form className="App-header__form" onSubmit={handleSubmit}>
-            <TextField fullWidth required id="outlined-required" value={inputValue} onChange={handelChange} label="Сообщение" variant="outlined" />
+            <TextField fullWidth required id="outlined-required" value={inputValue} onChange={handelChange} label={label} variant="outlined" placeholder={placeholder} />
             <Button type="submit" variant="contained" color="primary">Отправить</Button>
         </form>
     )
