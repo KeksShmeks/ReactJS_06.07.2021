@@ -5,6 +5,7 @@ import Chat from './ChatItem';
 import ListChats from './ListChats';
 import Home from "./Home";
 import Profile from "./profile/Profile";
+import Picture from "./picture/picture";
 
 
 export default function Routes(props) {
@@ -13,15 +14,18 @@ export default function Routes(props) {
             <header>
                 <ul class="side_bar">
                     <li>
-                        <Link to="/profile">profile</Link>
+                        <Link to="/profile">Profile</Link>
                     </li>
 
                     <li>
-                        <Link to="/chats">chats</Link>
+                        <Link to="/chats">Chats</Link>
                     </li>
 
                     <li>
                         <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/picture">Picture</Link>
                     </li>
                 </ul>
             </header>
@@ -40,6 +44,8 @@ export default function Routes(props) {
                 />
 
                 <Route exact path="/chats" component={ListChats} />
+
+                <Route exact path="/picture" component={Picture} />
 
                 <Route>
                     <h3>Page not found</h3>
